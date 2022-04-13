@@ -13,27 +13,44 @@ let choices = [
 // if one player gets 5 points, display WINNER: player_name 
 
 
+
 function playRound(playerSelection, computerSelection) {
     initSelection = playerSelection.toLowerCase()
 
+    let scorePlayer = 0;
+    let scoreBot = 0;
+    
+    const playerScore = document.querySelector('#playerPoints');
+    const computerScore = document.querySelector('#computerPoints')
+
     if (initSelection === computerSelection) {
+        scoreBot += 1
+        computerScore.textContent = `Machine: ${scoreBot}`
         return `It's a draw, you both picked ${initSelection}`
         
     }
 
     else if (initSelection === 'rock' && computerSelection === 'paper') {
+        scoreBot += 1
+        computerScore.textContent = `Machine: ${scoreBot}`
         return "You Lose! Paper beats Rock"
     }
 
     else if (initSelection === 'paper' && computerSelection === 'scissors') {
+        scoreBot += 1
+        computerScore.textContent = `Machine: ${scoreBot}`
         return "You Lose! Scissors beat paper"
     }
 
     else if (initSelection === 'scissors' && computerSelection === 'rock') {
+        scoreBot += 1
+        computerScore.textContent = `Machine: ${scoreBot}`
         return "You Lose! Rock beats scissors"
     }
 
     else {
+        scorePlayer += 1
+        playerScore.textContent = `Player: ${scorePlayer}`
         return "You won!"
     }
 }
@@ -42,8 +59,6 @@ function playRound(playerSelection, computerSelection) {
 function game() {
     const results = document.querySelector('#results');
 
-    let scorePlayer = 0;
-    let scoreBot = 0;
     
 
     const scis = document.querySelector('#scis');
@@ -70,5 +85,5 @@ function game() {
 }
 
 
-game(scorePlayer, scoreBot)
+game()
 
