@@ -6,52 +6,55 @@ let choices = [
 ]
 
 
-//Display the running score, and announce a winner of the game once one player reaches 5 points. `
-// create 2 divs, 1 displaying points of computer, 1 displaying points of player `
-// both players start at 0 points, for every win, add a point to the winner `
-// update scoreboard
-// if one player gets 5 points, display WINNER: player_name 
 
 
+let scorePlayer = 0;
+let scoreBot = 0;
 
 function playRound(playerSelection, computerSelection) {
     initSelection = playerSelection.toLowerCase()
 
-    let scorePlayer = 0;
-    let scoreBot = 0;
     
     const playerScore = document.querySelector('#playerPoints');
     const computerScore = document.querySelector('#computerPoints')
 
-    if (initSelection === computerSelection) {
-        scoreBot += 1
-        computerScore.textContent = `Machine: ${scoreBot}`
-        return `It's a draw, you both picked ${initSelection}`
-        
+    while(scorePlayer < 5 && scoreBot < 5) {
+        console.log(scorePlayer);
+        console.log(scoreBot);
+        if (initSelection === computerSelection) {
+            return `It's a draw, you both picked ${initSelection}`
+            
+        }
+    
+        else if (initSelection === 'rock' && computerSelection === 'paper') {
+            scoreBot += 1
+            computerScore.textContent = `Machine: ${scoreBot}`
+            return "You Lose! Paper beats Rock"
+        }
+    
+        else if (initSelection === 'paper' && computerSelection === 'scissors') {
+            scoreBot += 1
+            computerScore.textContent = `Machine: ${scoreBot}`
+            return "You Lose! Scissors beat paper"
+        }
+    
+        else if (initSelection === 'scissors' && computerSelection === 'rock') {
+            scoreBot += 1
+            computerScore.textContent = `Machine: ${scoreBot}`
+            return "You Lose! Rock beats scissors"
+        }
+    
+        else {
+            scorePlayer += 1
+            playerScore.textContent = `Player: ${scorePlayer}`
+            return "You won!"
+        }
     }
-
-    else if (initSelection === 'rock' && computerSelection === 'paper') {
-        scoreBot += 1
-        computerScore.textContent = `Machine: ${scoreBot}`
-        return "You Lose! Paper beats Rock"
+    if (scorePlayer === 5) {
+        return "YOU WOOOOOON!"
     }
-
-    else if (initSelection === 'paper' && computerSelection === 'scissors') {
-        scoreBot += 1
-        computerScore.textContent = `Machine: ${scoreBot}`
-        return "You Lose! Scissors beat paper"
-    }
-
-    else if (initSelection === 'scissors' && computerSelection === 'rock') {
-        scoreBot += 1
-        computerScore.textContent = `Machine: ${scoreBot}`
-        return "You Lose! Rock beats scissors"
-    }
-
     else {
-        scorePlayer += 1
-        playerScore.textContent = `Player: ${scorePlayer}`
-        return "You won!"
+        return "womp womp womp"
     }
 }
 
